@@ -32,3 +32,17 @@ ffreturn1(10); //16
 ffreturn1(10); //17
 
 //这里的tmp 也可以看做从外部的function 中访问的变量  ，但是return 之后，就相当于，是其中的副本
+// 那问题来了，js 处理 object 时是用到引用传递的，那么，你调用foo 时，传递一个object ,foo 函数return 的闭包也会引用 最初那个object
+
+function fobject(x) {
+    var tmp = 3;
+    return function(y) {
+        console.log(x + y + tmp);
+        x.memb = x.memb ? x.memb + 1 : 1
+        console.log(x.memb);
+    }
+}
+
+var age = new Number(2);
+var bar = foo(age);
+bar(10);
