@@ -38,7 +38,7 @@ function fobject(x) {
     var tmp = 3;
     return function(y) {
         console.log(x + y + tmp);
-        x.memb = x.memb ? x.memb + 1 : 1
+        x.memb = x.memb ? x.memb + 1 : 1;
         console.log(x.memb);
     }
 }
