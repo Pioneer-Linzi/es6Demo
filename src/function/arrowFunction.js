@@ -33,3 +33,12 @@ var getTempItem = id => ({
     id: id,
     name: ''
 })
+
+
+/**
+ * 箭头函数可以与变量解构结合保用
+ */
+
+const full = ({ firstName, lastname }) => firstName + ' ' + lastName;
+
+console.log(full({ firstName: "firstName", lastName: "lastname" }))
