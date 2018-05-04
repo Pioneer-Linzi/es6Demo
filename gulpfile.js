@@ -6,6 +6,7 @@
  */
 let gulp = require('gulp');
 let child_process= require('child_process');
+var fileName='';
 
 gulp.task('default',()=>{
 	console.log('default');
@@ -28,7 +29,7 @@ gulp.task('build',function(cb){
 
 gulp.task('run',['build'],function(cb){
 		console.log('----------------------------------------------------run result------------------------------------------------------');
-	child_process.exec('node lib/async/asyncLearn.js| cat',{shell:'/bin/sh'},function(error,stdout,stderr){
+	child_process.exec('node '+fileName,{shell:'/bin/sh'},function(error,stdout,stderr){
 		  if (error) {
 			      console.error(`exec error: ${error}`);
 			      return;
@@ -41,6 +42,11 @@ gulp.task('run',['build'],function(cb){
 });
 
 gulp.task('watch',function(){
-	gulp.watch('./src/**/*.js',['run'])
+	gulp.watch('./src/**/*.js',function(event){
+		console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+		fileName = event.path;
+		gulp.start('run');
+
+	})
 })
 
