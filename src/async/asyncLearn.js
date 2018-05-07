@@ -13,5 +13,4 @@ console.log(g.next().value.then((res)=>{
     console.log(res);
 }).then((res)=>{
     console.log(res);
-    
 }));
