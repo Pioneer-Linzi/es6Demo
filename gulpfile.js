@@ -43,7 +43,7 @@ gulp.task('run', ['build'], function (cb) {
 			if (error) {
 				console.error(`exec error: ${error}`);
 			}
-			console.log(`stdout: ${stdout}`);
+			console.log(`stdout:\n${stdout}`);
 			console.log(`stderr: ${stderr}`);
 		});
 	} catch (e) {
