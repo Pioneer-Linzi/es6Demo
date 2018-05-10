@@ -7,8 +7,9 @@ Function.prototype.before=function(fn){
 }
 
 
-function createTime (){
+function createTime (param){
     console.log('createTime');
+    console.log(param);
 }
 
 function report(){
@@ -22,5 +23,5 @@ function validate(){
 }
 
 
-createTime.before(report).before(validate)();
+createTime.before(report).before(validate)('createparam');
 

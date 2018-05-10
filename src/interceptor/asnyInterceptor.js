@@ -1,10 +1,10 @@
 Function.prototype.callBackbefore=function(fn){
     let self= this;
     return function(){
+        let arg=arguments;
         fn.call(self,function(){
-            self.apply(self,self.arguments);
+            self.apply(self,arg);
         });
-
     }
 }
 
@@ -12,15 +12,16 @@ Function.prototype.callBackbefore=function(fn){
 /**
  * 登录之后才可以领奖
  */
-function reward (){
+function reward (param){
     console.log('reward');
+    console.log(param);
 }
 function callbackBefor(cb){
     console.log('start valite');
     setTimeout(function(){
         //login
         cb();
-    },10000);
+    },1000);
 }
 
-reward.callBackbefore(callbackBefor)();
+reward.callBackbefore(callbackBefor)('rwadsdf');
