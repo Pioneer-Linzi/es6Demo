@@ -1,8 +1,8 @@
-Function.prototype.callBackbefore=function(fn){
+Function.prototype.callBackbefore=function(fn,obj){
     let self= this;
     return function(){
         let arg=arguments;
-        fn.call(self,function(){
+        fn.call(obj||self,function(){
             self.apply(self,arg);
         });
     }
@@ -24,4 +24,29 @@ function callbackBefor(cb){
     },1000);
 }
 
-reward.callBackbefore(callbackBefor)('rwadsdf');
+
+
+function createTime (param){
+    console.log('createTime');
+    console.log(param);
+}
+
+function Report (){
+    this.time=213424
+}
+Report.prototype.report=function(cb){
+    console.log('report');
+    console.log(this.time);
+    setTimeout(function(){
+        cb();
+    },1000);
+    return true;
+}
+
+function validate(){
+    console.log('validate');
+    return true;
+}
+var req= new Report();
+
+reward.callBackbefore(req.report,req)('rwadsdf');

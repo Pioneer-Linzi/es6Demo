@@ -1,8 +1,8 @@
 Function.prototype.before=function(fn,obj){
     var self=this;
     return function(){
-        var bool=fn.call(obj||this);
-        if(bool) self.apply(this,arguments);
+        var bool=fn.call(obj||self);
+        if(bool) self.apply(self,arguments);
     }
 }
 
