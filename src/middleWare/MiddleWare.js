@@ -1,23 +1,26 @@
 class MiddleWare{
     constructor(){
-        this.middlewares=[]
+        this.cache=[];
+        this.middlewares=[];
     }
     use(fn){
         if(typeof fn !== 'function'){
             throw 'middleware must be a function ';
         }
-        this.middlewares.push(fn);
+        this.cache.push(fn);
         return this;
     }
 
     next(){
         if(this.middlewares&& this.middlewares.length>0){
             var ware = this.middlewares.shift();
-            ware.call(this,this.next.bind(this));
+            ware.call(this,this.req,this.next.bind(this));
         }
     }
 
-    start(){
+    start(req){
+        this.middlewares = this.cache.map((fn)=>fn);
+        this.req=req;
         this.next();
     }
 }
