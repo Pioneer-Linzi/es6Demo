@@ -4,8 +4,13 @@
   "description": "学习es6",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --notify",
     "build": "babel --minified src -d lib"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "testResultsProcessor": "./node_modules/jest-html-reporter"
   },
   "keywords": [
     "es6"
@@ -24,7 +29,9 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^15.0.1"
+    "eslint-config-airbnb": "^15.0.1",
+    "jest": "^22.4.4",
+    "jest-html-reporter": "^2.3.0"
   },
   "repository": {
     "type": "git",
