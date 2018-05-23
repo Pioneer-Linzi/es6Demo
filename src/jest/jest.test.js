@@ -7,5 +7,4 @@ test('jest demo test ',()=>{
     const name= 'linzi';
     jestDemo.setName(name);
     expect(jestDemo.getName()).toBe(name);
-
 });
