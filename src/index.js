@@ -4,4 +4,6 @@ import 'babel-polyfill';
 require('./base/base')
 // require('./middleWare/middleWareTest');
 
-require('./decorator/decoratorDemo');
+// require('./decorator/decoratorDemo');
+
+require('./async/asyncFile');
