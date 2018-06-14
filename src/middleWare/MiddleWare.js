@@ -5,7 +5,7 @@ class MiddleWare{
     }
     use(fn){
         if(typeof fn !== 'function'){
-            throw 'middleware must be a function ';
+            throw 'middleware must be a function';
         }
         this.cache.push(fn);
         return this;
