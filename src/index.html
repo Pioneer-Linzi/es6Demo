@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>
+        
+        </title>
+    </head>
+    <style>
+
+        .select ,.unselect{
+            background:red;
+            width:100px;
+            height:100px;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .select {
+            background:#333;
+        }
+    </style>
+    <body>
+        <div class="select">select</div>
+        <div class="select">select</div>
+        <div class="select">select</div>
+        <div class="select">select</div>
+        <div class="unselect">unselect</div>
+        <div class="unselect">unselect</div>
+        <div class="unselect">unselect</div>
+        <div class="unselect">unselect</div>
+        <div class="unselect">unselect</div>
+        <div class="unselect">unselect</div>
+        <div class="unselect">unselect</div>
+        <div class="unselect">unselect</div>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+        <script>
+            function Div(selector,obj){
+                var __this=this;
+                this.selector=$(selector);
+                this.bind=false;
+
+                this.selector.click(function(){
+                    obj.click(__this);
+                })
+                this.bindDiv=function(div){
+                    this.bind=div;
+                    this.bind.selector.css('background','red');
+                    this.bind.isbinded=true;
+                }
+
+                this.removeDiv= function(){
+                    this.bind.selector.css('background','#333');
+                    this.bind.isbinded=false;
+                    this.bind= false;
+                }
+                this.isbinded=false;
+            }
+
+            function Content(){
+                var __this =this;
+                this.unselect = [] ;
+                this.select= [];
+                this.initUnSelect = function(){
+                    var unselect =$('.unselect');
+                        for(var i=0;i<unselect.length;i++){
+                            this.unselect.push(new Div(unselect[i],{
+                                click:function(current){
+                                    if(!current.bind){
+                                        current.bindDiv(__this.returnEmptyDiv());
+                                    }else{
+                                        current.removeDiv();
+                                    }
+                                }
+                            }));
+                        }
+                }
+                this.initSelect = function(){
+                    var select =$('.select');
+                        for(var i=0;i<select.length;i++){
+                            this.select.push(new Div(select[i],{
+                                click:function(){
+                                    //什么都不做
+                                }
+                            }));
+                        }
+                }
+                this.returnEmptyDiv=function(){
+                    return this.select[this.select.findIndex(function(item){
+                        if(!item.isbinded) return item; 
+                    })];
+                }
+            }
+            var content = new Content();
+            content.initSelect();
+            content.initUnSelect();
+            console.log(content.unselect);
+            console.log(content.select);
+
+        </script>
+    </body>
+</html>
